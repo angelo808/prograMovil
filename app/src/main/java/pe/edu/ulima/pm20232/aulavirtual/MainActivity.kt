@@ -42,6 +42,8 @@ import pe.edu.ulima.pm20232.aulavirtual.screens.*
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.AulaVirtualTheme
 import androidx.compose.foundation.layout.padding
 import android.content.Intent
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.List
 
 class MainActivity() : ComponentActivity(), Parcelable {
     private val loginScrennViewModel by viewModels<LoginScreenViewModel>()
@@ -142,13 +144,13 @@ class MainActivity() : ComponentActivity(), Parcelable {
                                 val screens: List<BottomBarScreen> = listOf(
                                     BottomBarScreen(
                                         route = "home",
-                                        title = "Home",
-                                        icon = Icons.Default.Home
+                                        title = "Mi rutina",
+                                        icon = Icons.Default.CheckCircle
                                     ),
                                     BottomBarScreen(
-                                        route = "profile",
-                                        title = "Profile",
-                                        icon = Icons.Default.Person
+                                        route = "home",
+                                        title = "Ejercicios",
+                                        icon = Icons.Default.List
                                     ),
                                     BottomBarScreen(
                                         route = "compartir",
