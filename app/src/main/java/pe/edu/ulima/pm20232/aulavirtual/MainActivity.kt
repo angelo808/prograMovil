@@ -72,8 +72,6 @@ class MainActivity() : ComponentActivity(), Parcelable {
         intent2.type = "text/plain"
         intent2.setPackage("com.facebook.katana")
         intent2.putExtra(Intent.EXTRA_TEXT, message2)
-
-
         try{
             startActivity(intent2)
         } catch (e : Exception) {
@@ -100,7 +98,6 @@ class MainActivity() : ComponentActivity(), Parcelable {
             return arrayOfNulls(size)
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -253,21 +250,17 @@ class MainActivity() : ComponentActivity(), Parcelable {
                                                                             sendGitHubLinkToWhatsApp()
                                                                         }
                                                                     )
-
-
                                                                 Image(
                                                                     painter = painter2,
                                                                     contentDescription = null, // Set a proper content description if required
                                                                     modifier = Modifier.size(
-                                                                        130.dp,
-                                                                        130.dp)
+                                                                        120.dp,
+                                                                        120.dp)
                                                                         .clickable {
                                                                             sendGitHubLinkToFacebook()
                                                                         }
                                                                     )
-
                                                         }
-
                                                     }
                                                 },
                                                 confirmButton = {
