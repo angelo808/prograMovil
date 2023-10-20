@@ -16,7 +16,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,12 +40,8 @@ import pe.edu.ulima.pm20232.aulavirtual.configs.TopBarScreen
 import pe.edu.ulima.pm20232.aulavirtual.screenmodels.*
 import pe.edu.ulima.pm20232.aulavirtual.screens.*
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.AulaVirtualTheme
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.Alignment
 import android.content.Intent
-import android.content.ActivityNotFoundException
 
 class MainActivity() : ComponentActivity(), Parcelable {
     private val loginScrennViewModel by viewModels<LoginScreenViewModel>()
@@ -54,26 +49,37 @@ class MainActivity() : ComponentActivity(), Parcelable {
     private val homeScrennViewModel by viewModels<HomeScreenViewModel>()
     private val pokemonDetailScrennViewModel by viewModels<PokemonDetailScreenViewModel>()
 
-    private fun shareOnWhatsAppOrFacebook(link: String) {
+    fun sendGitHubLinkToWhatsApp() {
+        val githubUrl = "https://github.com/angelo808/prograMovil"
+        val message = "¡Echa un vistazo a mi repositorio en GitHub: $githubUrl"
+
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, "¡Echa un vistazo a este enlace: $link")
+        intent.setPackage("com.whatsapp")
+
+        intent.putExtra(Intent.EXTRA_TEXT, message)
 
         try {
-            // Verifica si WhatsApp está instalado, si no, intenta abrir Facebook
-            intent.`package` = "com.whatsapp"
             startActivity(intent)
-        } catch (whatsAppException: ActivityNotFoundException) {
-            intent.`package` = "com.facebook.katana"
-            try {
-                startActivity(intent)
-            } catch (facebookException: ActivityNotFoundException) {
-                // Maneja la excepción si ninguna de las aplicaciones está instalada
-                // Puedes sugerir al usuario que instale WhatsApp o Facebook en este punto.
-            }
+        } catch (e: Exception) {
+
         }
     }
+    fun sendGitHubLinkToFacebook(){
+        val githubUrl2 = "https://github.com/angelo808/prograMovil"
+        val message2 = "¡Echa un vistazo a mi repositorio en GitHub: $githubUrl2"
+        val intent2 = Intent(Intent.ACTION_SEND)
+        intent2.type = "text/plain"
+        intent2.setPackage("com.facebook.katana")
+        intent2.putExtra(Intent.EXTRA_TEXT, message2)
 
+
+        try{
+            startActivity(intent2)
+        } catch (e : Exception) {
+
+        }
+    }
     constructor(parcel: Parcel) : this() {
     }
 
@@ -244,7 +250,7 @@ class MainActivity() : ComponentActivity(), Parcelable {
                                                                         130.dp,
                                                                         130.dp)
                                                                         .clickable {
-                                                                            shareOnWhatsAppOrFacebook("https://www.google.com")
+                                                                            sendGitHubLinkToWhatsApp()
                                                                         }
                                                                     )
 
@@ -254,9 +260,12 @@ class MainActivity() : ComponentActivity(), Parcelable {
                                                                     contentDescription = null, // Set a proper content description if required
                                                                     modifier = Modifier.size(
                                                                         130.dp,
-                                                                        130.dp
+                                                                        130.dp)
+                                                                        .clickable {
+                                                                            sendGitHubLinkToFacebook()
+                                                                        }
                                                                     )
-                                                                )
+
                                                         }
 
                                                     }
